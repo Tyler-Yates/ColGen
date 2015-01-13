@@ -12,5 +12,5 @@ public interface ElementEmitter<T> {
      *
      * @return a single element
      */
-    public abstract T emitElement();
+    T emitElement();
 }
