@@ -1,6 +1,5 @@
 package com.jcg;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,27 +9,15 @@ import static org.junit.Assert.assertFalse;
 
 public class CollectionGeneratorTest {
 
-    private ElementEmitter<Integer> integerElementEmitter;
-
-    @Before
-    public void init() {
-        integerElementEmitter = new ElementEmitter<Integer>() {
-            @Override
-            public Integer emitElement() {
-                return (int) (Math.random() * 1000);
-            }
-        };
-    }
-
     @Test
     public void testListGeneration() {
-        final List<Integer> list = CollectionGenerator.generateList(integerElementEmitter);
+        final List<Integer> list = CollectionGenerator.generateList(ElementEmitters.POSITIVE_INTEGERS);
         assertFalse(list.isEmpty());
     }
 
     @Test
     public void testSetGeneration() {
-        final Set<Integer> set = CollectionGenerator.generateSet(integerElementEmitter);
+        final Set<Integer> set = CollectionGenerator.generateSet(ElementEmitters.POSITIVE_INTEGERS);
         assertFalse(set.isEmpty());
     }
 }
