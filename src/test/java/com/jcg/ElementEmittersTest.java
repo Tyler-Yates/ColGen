@@ -6,8 +6,7 @@ import java.util.List;
 
 import static com.jcg.CollectionGenerator.generateList;
 import static com.jcg.ElementEmitters.*;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class ElementEmittersTest {
@@ -17,6 +16,14 @@ public class ElementEmittersTest {
         final List<Integer> integers = generateList(POSITIVE_INTEGERS, 1_000_000);
         for (int num : integers) {
             assertThat(num, greaterThan(0));
+        }
+    }
+
+    @Test
+    public void testNegativeIntegers() {
+        final List<Integer> integers = generateList(NEGATIVE_INTEGERS, 1_000_000);
+        for (int num : integers) {
+            assertThat(num, lessThan(0));
         }
     }
 

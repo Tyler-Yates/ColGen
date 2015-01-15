@@ -18,6 +18,16 @@ public abstract class ElementEmitters {
     };
 
     /**
+     * Generates random negative integers in the range [Integer.MIN_VALUE, -1]
+     */
+    public static final ElementEmitter<Integer> NEGATIVE_INTEGERS = new ElementEmitter<Integer>() {
+        @Override
+        public Integer emitElement() {
+            return generateRandom(Integer.MIN_VALUE, -1);
+        }
+    };
+
+    /**
      * Generates random non-negative integers in the range [0, Integer.MAX_VALUE]
      */
     public static final ElementEmitter<Integer> NON_NEGATIVE_INTEGERS = new ElementEmitter<Integer>() {
