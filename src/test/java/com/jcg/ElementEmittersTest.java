@@ -5,10 +5,16 @@ import org.junit.Test;
 import java.util.List;
 
 import static com.jcg.CollectionGenerator.generateList;
-import static com.jcg.ElementEmitters.*;
-import static org.hamcrest.Matchers.*;
+import static com.jcg.ElementEmitters.INTEGERS;
+import static com.jcg.ElementEmitters.NEGATIVE_INTEGERS;
+import static com.jcg.ElementEmitters.NON_NEGATIVE_INTEGERS;
+import static com.jcg.ElementEmitters.POSITIVE_INTEGERS;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
+@SuppressWarnings("JavaDoc")
 public class ElementEmittersTest {
 
     @Test

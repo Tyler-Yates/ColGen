@@ -3,7 +3,7 @@ package com.jcg;
 import com.google.common.base.Preconditions;
 
 /**
- * Contains various pre-created {@link com.jcg.ElementEmitter} instances.
+ * Contains various pre-created {@link ElementEmitter} instances.
  */
 public abstract class ElementEmitters {
 
@@ -30,7 +30,8 @@ public abstract class ElementEmitters {
     /**
      * Generates random non-negative integers in the range [0, {@link Integer#MAX_VALUE}]
      */
-    public static final ElementEmitter<Integer> NON_NEGATIVE_INTEGERS = new ElementEmitter<Integer>() {
+    public static final ElementEmitter<Integer> NON_NEGATIVE_INTEGERS = new
+            ElementEmitter<Integer>() {
         @Override
         public Integer emitElement() {
             return generateRandom(0, Integer.MAX_VALUE);
@@ -47,6 +48,14 @@ public abstract class ElementEmitters {
         }
     };
 
+    /**
+     * Generates a random int in the range [{@code min}, {@code max}].
+     *
+     * @param min the minimum random integer to generate (inclusive).
+     * @param max the maximum random integer to generate (inclusive).
+     *
+     * @return a randomly generated int in the given range.
+     */
     static int generateRandom(int min, int max) {
         Preconditions.checkArgument(min <= max);
         return (int) (Math.random() * (1.0 * max - min + 1) + min);
