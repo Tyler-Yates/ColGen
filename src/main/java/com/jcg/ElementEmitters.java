@@ -1,6 +1,6 @@
 package com.jcg;
 
-import com.google.common.base.Preconditions;
+import static com.jcg.RandomUtil.generateRandom;
 
 /**
  * Contains various pre-created {@link ElementEmitter} instances.
@@ -39,7 +39,8 @@ public abstract class ElementEmitters {
     };
 
     /**
-     * Generates random integers in the range [{@link Integer#MIN_VALUE}, {@link Integer#MAX_VALUE}]
+     * Generates random integers in the range [{@link Integer#MIN_VALUE}, {@link
+     * Integer#MAX_VALUE}]
      */
     public static final ElementEmitter<Integer> INTEGERS = new ElementEmitter<Integer>() {
         @Override
@@ -47,17 +48,4 @@ public abstract class ElementEmitters {
             return generateRandom(Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
     };
-
-    /**
-     * Generates a random int in the range [{@code min}, {@code max}].
-     *
-     * @param min the minimum random integer to generate (inclusive).
-     * @param max the maximum random integer to generate (inclusive).
-     *
-     * @return a randomly generated int in the given range.
-     */
-    static int generateRandom(int min, int max) {
-        Preconditions.checkArgument(min <= max);
-        return (int) (Math.random() * (1.0 * max - min + 1) + min);
-    }
 }

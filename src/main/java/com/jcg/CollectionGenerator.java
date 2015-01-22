@@ -4,8 +4,10 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -100,10 +102,29 @@ public class CollectionGenerator {
         return set;
     }
 
+    public static <K, V> Map<K, V> generateMap(KeyValueEmitter<K, V> keyValueEmitter) {
+        return generateMap(keyValueEmitter, 10);
+    }
+
+    public static <K, V> Map<K, V> generateMap(KeyValueEmitter<K, V> keyValueEmitter,
+            int numElements) {
+        final Map<K, V> map = new HashMap<>();
+        fillMap(map, keyValueEmitter, numElements);
+        return map;
+    }
+
     private static <T> void fillCollection(Collection<T> collection,
             ElementEmitter<T> elementEmitter, int numElements) {
         while (collection.size() < numElements) {
             collection.add(elementEmitter.emitElement());
+        }
+    }
+
+    private static <K, V> void fillMap(Map<K, V> map, KeyValueEmitter<K, V> keyValueEmitter,
+            int numElements) {
+        while (map.size() < numElements) {
+            final K key = keyValueEmitter.emitKey();
+            map.put(key, keyValueEmitter.emitValue(key));
         }
     }
 }
