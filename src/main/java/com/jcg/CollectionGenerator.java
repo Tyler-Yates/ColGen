@@ -38,7 +38,7 @@ public class CollectionGenerator {
      */
     public static <T> List<T> generateList(ElementEmitter<T> elementEmitter, int numElements) {
         final List<T> list = new ArrayList<>();
-        generateCollection(list, elementEmitter, numElements);
+        fillCollection(list, elementEmitter, numElements);
         return list;
     }
 
@@ -68,7 +68,7 @@ public class CollectionGenerator {
     public static <T> ImmutableList<T> generateImmutableList(ElementEmitter<T> elementEmitter,
             int numElements) {
         final List<T> list = new ArrayList<>();
-        generateCollection(list, elementEmitter, numElements);
+        fillCollection(list, elementEmitter, numElements);
         return ImmutableList.copyOf(list);
     }
 
@@ -96,11 +96,11 @@ public class CollectionGenerator {
      */
     public static <T> Set<T> generateSet(ElementEmitter<T> elementEmitter, int numElements) {
         final Set<T> set = new HashSet<>();
-        generateCollection(set, elementEmitter, numElements);
+        fillCollection(set, elementEmitter, numElements);
         return set;
     }
 
-    private static <T> void generateCollection(Collection<T> collection,
+    private static <T> void fillCollection(Collection<T> collection,
             ElementEmitter<T> elementEmitter, int numElements) {
         while (collection.size() < numElements) {
             collection.add(elementEmitter.emitElement());
