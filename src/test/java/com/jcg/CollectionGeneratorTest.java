@@ -6,6 +6,10 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Set;
 
+import static com.jcg.CollectionGenerator.generateImmutableList;
+import static com.jcg.CollectionGenerator.generateList;
+import static com.jcg.CollectionGenerator.generateSet;
+import static com.jcg.ElementEmitters.POSITIVE_INTEGERS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -15,42 +19,37 @@ public class CollectionGeneratorTest {
 
     @Test
     public void testGenerateList() {
-        final List<Integer> list = CollectionGenerator.generateList(
-                ElementEmitters.POSITIVE_INTEGERS);
+        final List<Integer> list = generateList(POSITIVE_INTEGERS);
         assertFalse(list.isEmpty());
     }
 
     @Test
     public void testGenerateListWithSize() {
-        final List<Integer> list = CollectionGenerator.generateList(
-                ElementEmitters.POSITIVE_INTEGERS, SIZE);
+        final List<Integer> list = generateList(POSITIVE_INTEGERS, SIZE);
         assertEquals(SIZE, list.size());
     }
 
     @Test
     public void testGenerateImmutableList() {
-        final ImmutableList<Integer> list = CollectionGenerator.generateImmutableList(
-                ElementEmitters.POSITIVE_INTEGERS);
+        final ImmutableList<Integer> list = generateImmutableList(POSITIVE_INTEGERS);
         assertFalse(list.isEmpty());
     }
 
     @Test
     public void testGenerateImmutableListWithSize() {
-        final ImmutableList<Integer> list = CollectionGenerator.generateImmutableList(
-                ElementEmitters.POSITIVE_INTEGERS, SIZE);
+        final ImmutableList<Integer> list = generateImmutableList(POSITIVE_INTEGERS, SIZE);
         assertEquals(SIZE, list.size());
     }
 
     @Test
     public void testGenerateSet() {
-        final Set<Integer> set = CollectionGenerator.generateSet(ElementEmitters.POSITIVE_INTEGERS);
+        final Set<Integer> set = generateSet(POSITIVE_INTEGERS);
         assertFalse(set.isEmpty());
     }
 
     @Test
     public void testGenerateSetWithSize() {
-        final Set<Integer> set = CollectionGenerator.generateSet(ElementEmitters.POSITIVE_INTEGERS,
-                SIZE);
+        final Set<Integer> set = generateSet(POSITIVE_INTEGERS, SIZE);
         assertEquals(SIZE, set.size());
     }
 }
