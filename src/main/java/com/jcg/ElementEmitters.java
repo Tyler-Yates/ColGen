@@ -1,5 +1,6 @@
 package com.jcg;
 
+import static com.jcg.RandomUtil.generateEnglishWord;
 import static com.jcg.RandomUtil.generateRandom;
 
 /**
@@ -46,6 +47,17 @@ public abstract class ElementEmitters {
         @Override
         public Integer emitElement() {
             return generateRandom(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+    };
+
+    /**
+     * Generates random english words. Be aware that the amount of unique words this emitter can
+     * generate is limited.
+     */
+    public static final ElementEmitter<String> ENGLISH_WORDS = new ElementEmitter<String>() {
+        @Override
+        public String emitElement() {
+            return generateEnglishWord();
         }
     };
 }
