@@ -1,5 +1,7 @@
 package com.jcg;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -38,6 +40,36 @@ public class CollectionGenerator {
         final List<T> list = new ArrayList<>();
         generateCollection(list, elementEmitter, numElements);
         return list;
+    }
+
+    /**
+     * Generates a non-empty immutable list using the given {@link ElementEmitter} to generate the
+     * elements in the list.
+     *
+     * @param elementEmitter the element emitter
+     * @param <T> the type of elements that the list will contain
+     *
+     * @return the created non-empty immutable list
+     */
+    public static <T> ImmutableList<T> generateImmutableList(ElementEmitter<T> elementEmitter) {
+        return generateImmutableList(elementEmitter, 10);
+    }
+
+    /**
+     * Generates an immutable list using the given {@link ElementEmitter} to generate the given
+     * number of elements in the list.
+     *
+     * @param elementEmitter the element emitter
+     * @param numElements the number of elements the list will contain
+     * @param <T> the type of elements that the list will contain
+     *
+     * @return the created immutable list
+     */
+    public static <T> ImmutableList<T> generateImmutableList(ElementEmitter<T> elementEmitter,
+            int numElements) {
+        final List<T> list = new ArrayList<>();
+        generateCollection(list, elementEmitter, numElements);
+        return ImmutableList.copyOf(list);
     }
 
     /**
