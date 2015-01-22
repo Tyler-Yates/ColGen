@@ -4,10 +4,12 @@ import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static com.jcg.CollectionGenerator.generateImmutableList;
 import static com.jcg.CollectionGenerator.generateList;
+import static com.jcg.CollectionGenerator.generateMap;
 import static com.jcg.CollectionGenerator.generateSet;
 import static com.jcg.ElementEmitters.POSITIVE_INTEGERS;
 import static org.junit.Assert.assertEquals;
@@ -51,5 +53,17 @@ public class CollectionGeneratorTest {
     public void testGenerateSetWithSize() {
         final Set<Integer> set = generateSet(POSITIVE_INTEGERS, SIZE);
         assertEquals(SIZE, set.size());
+    }
+
+    @Test
+    public void testGenerateMap() {
+        final Map<Integer, Integer> map = generateMap(POSITIVE_INTEGERS, POSITIVE_INTEGERS);
+        assertFalse(map.isEmpty());
+    }
+
+    @Test
+    public void testGenerateMapWithSize() {
+        final Map<Integer, Integer> map = generateMap(POSITIVE_INTEGERS, POSITIVE_INTEGERS, SIZE);
+        assertEquals(SIZE, map.size());
     }
 }

@@ -102,14 +102,38 @@ public class CollectionGenerator {
         return set;
     }
 
-    public static <K, V> Map<K, V> generateMap(KeyValueEmitter<K, V> keyValueEmitter) {
-        return generateMap(keyValueEmitter, 10);
+    /**
+     * Generates a non-empty map using the given {@link ElementEmitter}s to generate the keys and
+     * values.
+     *
+     * @param keyEmitter the key emitter
+     * @param valueEmitter the value emitter
+     * @param <K> the type of keys the map will contain
+     * @param <V> the type of values the map will contain
+     *
+     * @return the created non-empty map
+     */
+    public static <K, V> Map<K, V> generateMap(ElementEmitter<K> keyEmitter,
+            ElementEmitter<V> valueEmitter) {
+        return generateMap(keyEmitter, valueEmitter, 10);
     }
 
-    public static <K, V> Map<K, V> generateMap(KeyValueEmitter<K, V> keyValueEmitter,
-            int numElements) {
+    /**
+     * Generates a map using the given {@link ElementEmitter}s to generate the given number of
+     * keys and values.
+     *
+     * @param keyEmitter the key emitter
+     * @param valueEmitter the value emitter
+     * @param numElements the number of key/value pairs the map will contain
+     * @param <K> the type of keys the map will contain
+     * @param <V> the type of values the map will contain
+     *
+     * @return the created map
+     */
+    public static <K, V> Map<K, V> generateMap(ElementEmitter<K> keyEmitter,
+            ElementEmitter<V> valueEmitter, int numElements) {
         final Map<K, V> map = new HashMap<>();
-        fillMap(map, keyValueEmitter, numElements);
+        fillMap(map, keyEmitter, valueEmitter, numElements);
         return map;
     }
 
@@ -120,11 +144,10 @@ public class CollectionGenerator {
         }
     }
 
-    private static <K, V> void fillMap(Map<K, V> map, KeyValueEmitter<K, V> keyValueEmitter,
-            int numElements) {
+    private static <K, V> void fillMap(Map<K, V> map, ElementEmitter<K> keyEmitter,
+            ElementEmitter<V> valueEmitter, int numElements) {
         while (map.size() < numElements) {
-            final K key = keyValueEmitter.emitKey();
-            map.put(key, keyValueEmitter.emitValue(key));
+            map.put(keyEmitter.emitElement(), valueEmitter.emitElement());
         }
     }
 }
